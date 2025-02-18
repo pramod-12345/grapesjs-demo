@@ -1,0 +1,95 @@
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@emotion/css": "^11.1.3",
+    "@grapesjs/react": "^1.0.0",
+    "@sentry/react": "^6.16.0",
+    "@sentry/tracing": "^6.16.0",
+    "@tapfiliate/tapfiliate-js": "^1.0.2",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "axios": "^0.21.1",
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "bootstrap": "^4.6.0",
+    "bootstrap-sass": "^3.4.1",
+    "font-awesome": "^4.7.0",
+    "grapesjs": "^0.21.8",
+    "grapesjs-blocks-basic": "^1.0.2",
+    "grapesjs-navbar": "^1.0.2",
+    "grapesjs-plugin-export": "^1.0.12",
+    "grapesjs-plugin-forms": "^2.0.6",
+    "grapesjs-preset-newsletter": "^1.0.2",
+    "grapesjs-preset-webpage": "^1.0.3",
+    "grapesjs-project-manager": "^2.0.6",
+    "grapesjs-rte-extensions": "^1.0.10",
+    "grapesjs-style-bg": "^2.0.2",
+    "grapesjs-tailwind": "^1.0.10",
+    "moment": "^2.29.1",
+    "node-sass": "4.14.1",
+    "prop-types": "^15.7.2",
+    "react": "^18.0.0",
+    "react-bootstrap": "^1.4.3",
+    "web-templates": "^2.0.14",
+    "web-vitals": "^0.2.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.23.7",
+    "@babel/preset-env": "^7.23.8",
+    "@babel/preset-react": "^7.23.3",
+    "eslint": "^7.20.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-plugin-import": "^2.21.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.20.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.5.3",
+    "react-scripts": "^5.0.1",
+    "webpack": "5",
+    "webpack-cli": "4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build && npm run babel-node removeProdOnlyFiles.js",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "lint": "eslint src/**/*.js",
+    "lint:fix": "eslint --fix src/**/*.js"
+  },
+  "resolutions": {
+    "prosemirror-model": "1.9.1"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx}": [
+      "eslint --fix src/**/*.js"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "optionalDependencies": {
+    "babel-loader": "8.1.0"
+  }
+}

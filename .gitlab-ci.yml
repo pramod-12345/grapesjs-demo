@@ -1,0 +1,43 @@
+image: node:14
+
+before_script:
+  - apt-get update && apt-get install -y awscli  # Install AWS CLI
+
+stages:
+  - build
+  - deploy
+  - clear_cache
+
+variables:
+  AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+  AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+
+build:
+  stage: build
+  script:
+    - echo "Building the application..."
+    - export CI=false   # Set CI environment variable to true
+    - npm install      # Install project dependencies
+    - npx kendo-ui-license activate
+    - npm run build    # Execute the build script
+  artifacts:
+    paths:
+      - build/
+
+
+deploy:
+  stage: deploy
+  script:
+    - echo "Deploying the build to S3..."
+    - aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+    - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+    - aws s3 sync build/ s3://dev-publisher-app-webfin
+
+clear_cache:
+  stage: clear_cache
+  script:
+    - echo "Clearing CloudFront cache..."
+    - aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+    - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+    - aws cloudfront create-invalidation --distribution-id E3D8LMXBS5XXR4 --paths "/*"
+
